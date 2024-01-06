@@ -11,15 +11,13 @@ import Image from "next/image";
 import Navbar from "@/components/Navbar";
 
 const Home: React.FC = () => {
+  const { setDictionaryData } = useContext(DictionaryContext) || {};
   const [loading, setLoading] = useState<boolean>(false);
   const [dictionaryEntries, setDictionaryEntries] = useState<string[]>([]);
-  const contextData = useContext(DictionaryContext);
 
-  if (!contextData || !contextData.setDictionaryData) {
+  if (!setDictionaryData) {
     return null;
   }
-
-  const { setDictionaryData } = contextData;
 
   const handleSearch = async (word: string) => {
     try {
