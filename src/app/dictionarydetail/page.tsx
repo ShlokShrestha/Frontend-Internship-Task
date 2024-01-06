@@ -5,9 +5,8 @@ import { DictionaryContext } from "@/context/DictionaryContext";
 import { useContext, useEffect, useState } from "react";
 
 const Page = () => {
-  const contextData = useContext(DictionaryContext);
-
   const [isClient, setIsClient] = useState<boolean>(false);
+  const contextData = useContext(DictionaryContext);
 
   useEffect(() => {
     setIsClient(true);
