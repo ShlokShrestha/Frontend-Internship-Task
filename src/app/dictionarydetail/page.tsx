@@ -8,10 +8,10 @@ interface DictionaryDataItem {
 }
 
 const Page = () => {
-  const [isClient, setIsClient] = useState<boolean>(false);
   const { dictionaryData } = useContext(DictionaryContext) as {
     dictionaryData?: DictionaryDataItem[];
   };
+  const [isClient, setIsClient] = useState<boolean>(false);
 
   useEffect(() => {
     setIsClient(true);
