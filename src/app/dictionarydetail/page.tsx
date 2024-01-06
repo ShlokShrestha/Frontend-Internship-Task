@@ -9,19 +9,18 @@ interface DictionaryDataItem {
 
 const Page = () => {
   const [isClient, setIsClient] = useState<boolean>(false);
-  const contextData = useContext(DictionaryContext) || {};
+  const { dictionaryData } = useContext(DictionaryContext) as {
+    dictionaryData?: DictionaryDataItem[];
+  };
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  if (!isClient || !contextData) {
+  if (!isClient || !dictionaryData) {
     return null;
   }
 
-  const { dictionaryData } = useContext(DictionaryContext) as {
-    dictionaryData?: DictionaryDataItem[];
-  };
   console.log(dictionaryData);
   return (
     <div className="my-7">
