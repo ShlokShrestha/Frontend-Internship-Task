@@ -18,7 +18,7 @@ const DictionaryCard = ({ data }: { data: any }) => {
 
   return (
     <>
-      <div className=" my-4 rounded-2xl p-5 border-solid border-2 border-gray-300">
+      <div className=" my-4 rounded-3xl p-5 border-solid border-2 border-gray-300">
         <div className="flex gap-2 items-center">
           <audio
             ref={audioRef}

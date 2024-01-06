@@ -3,9 +3,6 @@ export const getDefinition = async (word: string) => {
   try {
     const response = await fetch(url);
     if (!response.ok) {
-      alert(
-        "Sorry pal, we couldn't find definitions for the word you were looking for."
-      );
       throw new Error(`Failed to fetch data. Status: ${response.status}`);
     }
     const data = await response.json();

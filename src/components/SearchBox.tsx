@@ -7,13 +7,13 @@ interface SearchBoxProps {
 const SearchBox: React.FC<SearchBoxProps> = ({ getSearchValue }) => {
   const [inputValue, setInputValue] = useState("");
 
-  const handleSubmit = () => {
-    if (inputValue.trim() !== "") {
-      getSearchValue(inputValue);
-    } else {
-      alert("Please write word to search");
-    }
-  };
+  // const handleSubmit = () => {
+  //   if (inputValue.trim() !== "") {
+  //     getSearchValue(inputValue);
+  //   } else {
+  //     alert("Please write word to search");
+  //   }
+  // };
 
   return (
     <div className="relative ">
@@ -37,19 +37,11 @@ const SearchBox: React.FC<SearchBoxProps> = ({ getSearchValue }) => {
       <input
         type="search"
         id="default-search"
-        className="block w-full p-4 ps-10 text-sm bg-gray-200 rounded-xl"
+        className="block w-full p-4 ps-10 text-sm bg-gray-200 rounded-2xl"
         placeholder="Search Word"
         required
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
+        onChange={(e) => getSearchValue(e.target.value)}
       />
-      <button
-        onClick={handleSubmit}
-        type="submit"
-        className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 my-auto font-medium rounded-lg text-sm px-4 py-2"
-      >
-        Search
-      </button>
     </div>
   );
 };
