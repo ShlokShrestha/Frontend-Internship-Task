@@ -3,10 +3,13 @@
 import DictionaryCard from "@/components/DictionaryCard";
 import { DictionaryContext } from "@/context/DictionaryContext";
 import { useContext, useEffect, useState } from "react";
+interface DictionaryDataItem {
+  word: string;
+}
 
 const Page = () => {
   const [isClient, setIsClient] = useState<boolean>(false);
-  const contextData = useContext(DictionaryContext);
+  const contextData = useContext(DictionaryContext) || {};
 
   useEffect(() => {
     setIsClient(true);
@@ -16,7 +19,9 @@ const Page = () => {
     return null;
   }
 
-  const { dictionaryData } = contextData;
+  const { dictionaryData } = useContext(DictionaryContext) as {
+    dictionaryData?: DictionaryDataItem[];
+  };
   console.log(dictionaryData);
   return (
     <div className="my-7">
