@@ -3,7 +3,26 @@
 import Image from "next/image";
 import { Key, useRef, useState } from "react";
 
-const DictionaryCard = ({ data }: { data: any }) => {
+interface Definition {
+  definition: string;
+}
+
+interface Meaning {
+  partOfSpeech: string;
+  definitions: Definition[];
+}
+interface Phonetics {
+  audio: string;
+}
+interface DataProps {
+  data: {
+    phonetic: string;
+    meanings: Meaning[];
+    definitions: Definition[];
+    phonetics: Phonetics[];
+  };
+}
+const DictionaryCard = ({ data }: DataProps) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [selectedTab, setSelectedTab] = useState<string>("noun");
@@ -22,10 +41,7 @@ const DictionaryCard = ({ data }: { data: any }) => {
         <div className="flex gap-2 items-center">
           <audio
             ref={audioRef}
-            src={
-              data.phonetics.find((phonetic: { audio: any }) => phonetic.audio)
-                ?.audio
-            }
+            src={data.phonetics.find((phonetic) => phonetic.audio)?.audio}
           />
           <Image
             src={isPlaying ? "/pause.svg" : "/play.svg"}
@@ -59,13 +75,16 @@ const DictionaryCard = ({ data }: { data: any }) => {
           {data &&
             data.meanings.map(
               (
-                meaning: { partOfSpeech: string; definitions: any[] },
+                meaning: {
+                  definitions: any;
+                  partOfSpeech: string;
+                },
                 index: Key
               ) =>
                 meaning.partOfSpeech === selectedTab && (
                   <div key={index}>
                     <ol className="list-decimal list-inside">
-                      {meaning.definitions.map((def, index) => (
+                      {meaning.definitions.map((def: any, index: number) => (
                         <li key={index} className="my-1">
                           {def.definition}
                         </li>

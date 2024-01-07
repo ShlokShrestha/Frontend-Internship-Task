@@ -7,14 +7,6 @@ interface SearchBoxProps {
 const SearchBox: React.FC<SearchBoxProps> = ({ getSearchValue }) => {
   const [inputValue, setInputValue] = useState("");
 
-  // const handleSubmit = () => {
-  //   if (inputValue.trim() !== "") {
-  //     getSearchValue(inputValue);
-  //   } else {
-  //     alert("Please write word to search");
-  //   }
-  // };
-
   return (
     <div className="relative ">
       <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">

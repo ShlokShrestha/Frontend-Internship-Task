@@ -10,10 +10,29 @@ import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 
+interface Meaning {
+  partOfSpeech: string;
+  definitions: Definition[];
+}
+
+interface Definition {
+  definition: string;
+  example: string;
+}
+
+interface Phonetics {
+  audio: string;
+}
+interface DictionaryEntries {
+  phonetic: string;
+  meanings: Meaning[];
+  definitions: Definition[];
+  phonetics: Phonetics[];
+}
 const Home: React.FC = () => {
   const { setDictionaryData } = useContext(DictionaryContext) || {};
   const [loading, setLoading] = useState<boolean>(false);
-  const [dictionaryEntries, setDictionaryEntries] = useState<string[]>([]);
+  const [dictionaryEntries, setDictionaryEntries] = useState<DictionaryEntries[]>([]);
 
   if (!setDictionaryData) {
     return null;
@@ -41,7 +60,7 @@ const Home: React.FC = () => {
         {loading ? (
           <Loader />
         ) : (
-          dictionaryEntries.map((def, index) => (
+          dictionaryEntries.map((def: any, index: number) => (
             <DictionaryCard key={index} data={def} />
           ))
         )}
