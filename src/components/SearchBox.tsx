@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+"use client";
 
 interface SearchBoxProps {
   getSearchValue: (value: string) => void;
 }
 
 const SearchBox: React.FC<SearchBoxProps> = ({ getSearchValue }) => {
-  const [inputValue, setInputValue] = useState("");
-
   return (
     <div className="relative ">
       <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
